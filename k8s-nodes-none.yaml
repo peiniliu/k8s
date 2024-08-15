@@ -1,0 +1,22 @@
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+cpuManagerPolicy: none
+systemReserved:
+  cpu: "1000m"
+kubeReserved:
+  cpu: "1000m"
+evictionHard:
+  memory.available: "200Mi"
+  nodefs.available: "10%"
+  nodefs.inodesFree: "5%"
+  imagefs.available: "15%"
+  imagefs.inodesFree: "5%"
+topologyManagerPolicy: "best-effort"
+
+# CPU Manager settings
+cpuManagerReconcilePeriod: "5s"
+cpuCFSQuota: true
+cpuCFSQuotaPeriod: "100ms"
+
+# CPU cores 0-31 are allocatable for workloads, and core 32 is reserved for system and kubelet tasks
+
